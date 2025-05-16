@@ -1,0 +1,33 @@
+# Entornos virtuales
+env/
+venv/
+ENV/
+.venv/
+
+# Archivos de entorno
+.env
+*.env
+
+# Archivos de compilación
+__pycache__/
+*.py[cod]
+*.so
+
+# Archivos de base de datos (solo si usas SQLite en dev)
+db.sqlite3
+
+# Archivos de logs
+*.log
+
+# Archivos de migraciones (si quieres ignorarlas, pero NO recomendado en producción)
+# **/migrations/*.py
+# **/migrations/*.pyc
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de editor
+.vscode/
+.idea/
+*.swp
