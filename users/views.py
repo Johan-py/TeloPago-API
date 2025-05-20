@@ -1,8 +1,8 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, generics, permissions
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import get_user_model
-from .serializers import UserCreateSerializer
+from .serializers import UserCreateSerializer, UserUpdateSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -35,4 +35,9 @@ def user_profile(request):
         "carnet": user.carnet,
         "balance": user.balance,  # ← agregado
     })
+class UserUpdateAPIView(generics.RetrieveUpdateAPIView):
+    serializer_class = UserUpdateSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
+    def get_object(self):
+        return self.request.user

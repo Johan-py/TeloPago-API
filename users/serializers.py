@@ -14,3 +14,9 @@ class UserCreateSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['nombre', 'email', 'fecha_nacimiento', 'carnet', 'balance']
+        read_only_fields = ['email']  # O quita si quieres permitir actualizar email
