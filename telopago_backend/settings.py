@@ -30,6 +30,7 @@ SECRET_KEY = 'django-insecure-ad@h80hscg&py0!s42fd)ic^lla%beg=qz7voe-t_225_@gaa1
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'https://telopago.vercel.app',
     'localhost',
     '127.0.0.1',
     '10.0.2.2',
