@@ -34,8 +34,9 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '10.0.2.2',
     'telopago-backend.onrender.com',
+    'http://localhost:4321',
 ]
-
+# CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
@@ -49,12 +50,16 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'prices',
+    'preregistration',
+    'corsheaders',
+
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # debe ir arriba del CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
