@@ -29,15 +29,55 @@ SECRET_KEY = 'django-insecure-ad@h80hscg&py0!s42fd)ic^lla%beg=qz7voe-t_225_@gaa1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+CORS_ALLOWED_ORIGINS = [
+    "https://telopago.vercel.app",
+    "http://localhost:4321",
+    "http://127.0.0.1:4321",
+    "http://localhost:8000",  # Añadido
+    "http://127.0.0.1:8000",
+]
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'access-control-allow-headers',  # Necesario para algunos navegadores
+    'access-control-allow-origin',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 ALLOWED_HOSTS = [
-    'https://telopago.vercel.app',
-    'localhost',
-    '127.0.0.1',
-    '10.0.2.2',
     'telopago-backend.onrender.com',
-    'http://localhost:4321',
+    'telopago.vercel.app',
+    '127.0.0.1',
+    'localhost',
 ]
 # CORS_ALLOW_ALL_ORIGINS = True
+
+
+
+# Asegura que los headers CORS se incluyan en las respuestas
+CORS_EXPOSE_HEADERS = ['Content-Type', 'Authorization']
+CORS_ALLOW_CREDENTIALS = True
+
+# Configuración adicional de seguridad para desarrollo
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+
+
+
+
 
 # Application definition
 
@@ -59,8 +99,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # debe ir arriba del CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -106,6 +146,12 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -113,6 +159,7 @@ REST_FRAMEWORK = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
