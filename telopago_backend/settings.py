@@ -36,6 +36,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:4321",
     "http://localhost:8000",  # Añadido
     "http://127.0.0.1:8000",
+    "http://127.0.0.1:5000",
+    "http://localhost:5000"
 ]
 CORS_ALLOW_METHODS = [
     'GET',
@@ -92,6 +94,7 @@ INSTALLED_APPS = [
     'users',
     'prices',
     'preregistration',
+    'payments',
     'corsheaders',
 
 
