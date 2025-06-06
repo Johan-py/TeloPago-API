@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserCreateAPIView, UserUpdateAPIView
+from .views import UserCreateAPIView, UserUpdateAPIView, recargar_balance
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import user_profile
 
@@ -9,5 +9,7 @@ urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('me/', user_profile, name='user-profile'),
+    path("recargar/", recargar_balance, name="recargar_balance"),
+
 
 ]
